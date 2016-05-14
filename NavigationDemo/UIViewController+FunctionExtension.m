@@ -15,11 +15,11 @@
 //+ (void)initialize {
 //    [super initialize];
 //}
-//
+
 //- (void)finalize {
 //    [super finalize];
 //}
-//
+
 + (void)load {
     [super load];
 //    NSLog(@"%s", __func__);
@@ -38,47 +38,47 @@
 @implementation UIViewController (UINavigationBarAttributesControl)
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-
-    viewController.navigationController.navigationBar.barTintColor = viewController.currentNavigationBarBackgroundColor;
-    viewController.navigationController.navigationBar.tintColor    = viewController.currentNavigationItemForegroundColor;
-    [viewController.navigationController.navigationBar setTitleTextAttributes:viewController.currentNavigationBarTextAttributes];
+    viewController.navigationController.navigationBar.barTintColor = viewController.currentBarTintColor;
+    viewController.navigationController.navigationBar.tintColor    = viewController.currentTintColor;
+    [viewController.navigationController.navigationBar setTitleTextAttributes:viewController.currentBarTextAttributes];
 }
 
-static const char * __UIViewControllerCurrentNavigationBarBackgroundColor = "__UIViewControllerCurrentNavigationBarBackgroundColor";
-
-- (void)setCurrentNavigationBarBackgroundColor:(UIColor *)currentNavigationBarBackgroundColor {
+static const char * __UIViewControllerCurrentBarTintColor = "__UIViewControllerCurrentBarTintColor";
+- (void)setCurrentBarTintColor:(UIColor *)currentBarTintColor {
     if (self.navigationController.delegate == nil) {
         self.navigationController.delegate = self;
     }
-    objc_setAssociatedObject(self, __UIViewControllerCurrentNavigationBarBackgroundColor, currentNavigationBarBackgroundColor, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, __UIViewControllerCurrentBarTintColor, currentBarTintColor, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (UIColor *)currentNavigationBarBackgroundColor {
-    return objc_getAssociatedObject(self, __UIViewControllerCurrentNavigationBarBackgroundColor);
+- (UIColor *)currentBarTintColor {
+    return objc_getAssociatedObject(self, __UIViewControllerCurrentBarTintColor);
 }
 
-static const char * __UIViewControllerCurrentNavigationItemForegroundColor = "__UIViewControllerCurrentNavigationItemForegroundColor";
-
-- (void)setCurrentNavigationItemForegroundColor:(UIColor *)currentNavigationItemForegroundColor {
-    objc_setAssociatedObject(self, __UIViewControllerCurrentNavigationItemForegroundColor, currentNavigationItemForegroundColor, OBJC_ASSOCIATION_RETAIN);
+static const char * __UIViewControllerCurrentTintColor = "__UIViewControllerCurrentTintColor";
+- (void)setCurrentTintColor:(UIColor *)currentTintColor {
+    if (self.navigationController.delegate == nil) {
+        self.navigationController.delegate = self;
+    }
+    objc_setAssociatedObject(self, __UIViewControllerCurrentTintColor, currentTintColor, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (UIColor *)currentNavigationItemForegroundColor {
-    return objc_getAssociatedObject(self, __UIViewControllerCurrentNavigationItemForegroundColor);
+- (UIColor *)currentTintColor {
+    return objc_getAssociatedObject(self, __UIViewControllerCurrentTintColor);
 }
 
-static const char * __UIViewControllerCurrentNavigationBarTextAttributes = "__UIViewControllerCurrentNavigationBarTextAttributes";
 
-- (void)setCurrentNavigationBarTextAttributes:(NSDictionary *)currentNavigationBarTextAttributes {
-    objc_setAssociatedObject(self, __UIViewControllerCurrentNavigationBarTextAttributes, currentNavigationBarTextAttributes, OBJC_ASSOCIATION_COPY_NONATOMIC);
+/// 文本属性
+static const char * __UIViewControllerCurrentBarTextAttributes = "__UIViewControllerCurrentBarTextAttributes";
+- (void)setCurrentBarTextAttributes:(NSDictionary *)currentBarTextAttributes {
+    if (self.navigationController.delegate == nil) {
+        self.navigationController.delegate = self;
+    }
+    objc_setAssociatedObject(self, __UIViewControllerCurrentBarTextAttributes, currentBarTextAttributes, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (NSDictionary *)currentNavigationBarTextAttributes {
-    return objc_getAssociatedObject(self, __UIViewControllerCurrentNavigationBarTextAttributes);
-}
-
-- (void)dealloc {
-    NSLog(@"%@ dealloc", self);
+- (NSDictionary *)currentBarTextAttributes {
+    return objc_getAssociatedObject(self, __UIViewControllerCurrentBarTextAttributes);
 }
 
 @end

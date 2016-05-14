@@ -12,10 +12,15 @@
 
 @end
 
+
 @interface UIViewController (UINavigationBarAttributesControl) <UINavigationControllerDelegate>
 
-@property (nonatomic, strong) UIColor      * currentNavigationBarBackgroundColor;
-@property (nonatomic, strong) UIColor      * currentNavigationItemForegroundColor;
-@property (nonatomic, strong) NSDictionary * currentNavigationBarTextAttributes;
+/// 导航栏背景颜色
+@property (nonatomic, strong) UIColor      * currentBarTintColor;
+/// 导航Item前景颜色
+@property (nonatomic, strong) UIColor      * currentTintColor;
+/// 导航title文本属性
+@property (nonatomic, strong) NSDictionary * currentBarTextAttributes;
 
 @end
+

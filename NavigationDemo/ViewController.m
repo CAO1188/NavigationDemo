@@ -13,17 +13,21 @@
 
 @end
 
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.currentNavigationBarBackgroundColor  = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
-    self.currentNavigationItemForegroundColor = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
-    self.currentNavigationBarTextAttributes   = @{NSFontAttributeName:[UIFont systemFontOfSize:10 + arc4random() % 5], NSForegroundColorAttributeName:[UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1]};
-    self.navigationItem.title = @"afadf";
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"a" style:UIBarButtonItemStyleDone target:self action:nil];
-    self.navigationItem.rightBarButtonItem = item;
     
+//    self.currentBarTintColor      = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
+    self.currentTintColor         = [UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1];
+    self.currentBarTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15], NSForegroundColorAttributeName:[UIColor colorWithRed:arc4random() % 255 / 255.0 green:arc4random() % 255 / 255.0 blue:arc4random() % 255 / 255.0 alpha:1]};
+    
+    self.navigationItem.title = @"afadf";
+
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
+    self.navigationItem.backBarButtonItem = item;
+
     UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [self.view addSubview:button];
     button.backgroundColor = [UIColor redColor];
@@ -36,6 +40,10 @@
 
 - (void)handleButtonClick:(UIButton *)button {
     [self.navigationController pushViewController:[ViewController new] animated:YES];
+}
+
+- (void)dealloc {
+    
 }
 
 @end
